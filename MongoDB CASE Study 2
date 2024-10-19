@@ -1,0 +1,97 @@
+CASE Study 2:
+
+{
+              Business Requirement : 
+                                    You are provided with various attributes of a TV Shows. You are working for 
+                                    “TMDB” which stores all TVshows’data. Basically, data contains its name,
+                                    producer, director, creation date, seasons, episodes, crew, and casts.
+              
+              TV Show contains -> 1.Show details
+                                  2.Seasons (Many)
+                                  3.Episodes (Many)
+                                  4.Reviews (Many)
+                                  5.Cast and Crew (Many)
+              
+              
+                                Each show has many seasons, each season has many episodes, and each episode
+                                has many reviews and many cast members. When users come into this site
+                                , typically they go directly to the page for a particular TV show. On that page, they 
+                                see all the seasons and all the episodes and all the reviews and all the cast 
+                                members from that show, all on one page. So, from the application perspective
+                                , when the user visits a page, we want to retrieve all of the information connected
+                                to that TV show.
+                                You mustchoosethebest possible database for the above data so that reads and
+                                writes can be faster.
+              
+              Considerations : 
+                                You have been given various attributes of a TV shows.
+              
+              Additional Information : 
+                                        If we model correctly,then we will be able to get the data in one hit. If you check
+                                        IMDB, there you will find all the details on a single page. Response time will be less.
+              
+              Approach to Solve : 
+                                  •List the advantages and disadvantages of both the plans and select one plan to implement
+                                  •Choose a data model after analyzing the source files provided to you with this case study 
+                                  •Select appropriate data model and create your personalized server
+                                  •Create collections in your database•Insert records in each collection
+}
+
+
+Solution : 
+            {
+                Approach to Solve the Problem:
+                Step 1: List the Advantages and Disadvantages of Both Plans
+                Plan 1: Relational Database (SQL) Approach
+                •	Advantages:
+                1.	Structured Data: SQL databases work well for structured data with relationships like Show, Seasons, Episodes, Reviews, and Cast/Crew.
+                2.	ACID Transactions: SQL databases (like PostgreSQL, MySQL) ensure data consistency and reliability with ACID properties (Atomicity, Consistency, Isolation, Durability).
+                3.	Complex Queries: SQL databases excel at complex queries and joins, which is useful if you need to pull data from multiple tables (e.g., fetching seasons, episodes, reviews, etc., in one query).
+
+                •	Disadvantages:
+                1.	Complexity in Joins: Retrieving all related data (seasons, episodes, reviews, cast/crew) in one hit using joins can result in complex and performance-heavy queries, which may slow down response times.
+                2.	Scalability Issues: As data grows (e.g., more shows, episodes, reviews), performance may degrade, especially when making complex queries with many joins.
+                3.	Normalization: Data in SQL is highly normalized (split across multiple tables), making retrieval for a single show more complicated and slower (due to multiple joins).
+                Plan 2: NoSQL Database (Document-based, e.g., MongoDB)
+
+                •	Advantages:
+                1.	Document Model: All data related to a TV show (seasons, episodes, reviews, cast/crew) can be stored together in a single document. This avoids the need for complex joins and allows for faster reads.
+                2.	Scalability: NoSQL databases like MongoDB are designed for horizontal scalability, allowing you to easily scale the database across multiple servers as your data grows.
+                3.	Flexibility: The flexible schema of a NoSQL database allows you to store structured, semi-structured, or unstructured data in the same database. This is particularly useful since TV show data can vary in format (e.g., reviews, metadata).
+                4.	Faster Read Operations: Since all related data can be retrieved in one document (e.g., all episodes, seasons, reviews, cast in one document), it provides faster reads with lower response times.
+                •	Disadvantages:
+                1.	Consistency: NoSQL databases typically offer eventual consistency rather than strong consistency (depending on the database configuration). However, MongoDB provides options for stronger consistency with replica sets.
+                2.	Limited ACID Transactions: While MongoDB supports ACID transactions at the document level, complex transactions across multiple documents or collections may be harder to manage.
+                3.	Potential for Data Duplication: Since data is often embedded within documents, there is the risk of data duplication. For instance, if the same cast/crew appears in multiple episodes, the cast/crew details might be duplicated.
+                ________________________________________
+                Step 2: Choose a Data Model
+                Based on the requirements of fast reads and minimizing the need for complex joins, NoSQL (specifically MongoDB, a document-based NoSQL database) is the best option. MongoDB allows you to store related data (seasons, episodes, reviews, cast/crew)
+                in a single document, ensuring that all relevant information is available for a single TV show in one hit.
+                Data Model in MongoDB:
+
+                1.	TV Show Document Structure:
+                o	Each TV show will be a document in a Shows collection.
+                o	Each show document will contain:
+                	Show Details: Basic details like name, producer, director, etc.
+                	Seasons: An array of seasons, each containing episodes.
+                	Reviews: An array of reviews, each related to a specific episode.
+                	Cast and Crew: A nested array of cast and crew for each episode.
+
+                2.	Collections:
+                o	Shows: The main collection, where each document represents a TV show.
+                o	Episodes: (Embedded in the Seasons array of each TV show) contains the episodes of a particular season.
+                o	Reviews and Cast/Crew: (Embedded within episodes) contains reviews and cast/crew details.
+
+                Step 3: Create Collections in MongoDB
+                1.	Create the "Shows" Collection:
+                o	In MongoDB, create a collection named Shows to store TV show documents.
+                2.	Create the "Episodes" (Embedded within Shows):
+                o	Since episodes are embedded within the TV show, they don't need a separate collection. The Seasons array within the Shows collection will store episode data.
+                ________________________________________
+                Step 4: Insert Records in Each Collection
+                Inserting records into MongoDB can be done using the insertOne() or insertMany() method. Below is an example of inserting a new TV show:
+                Conclusion:
+                Based on the requirements and the need for fast data retrieval (with minimal response time), MongoDB is the best choice. It allows you to embed related data (seasons, episodes, reviews, cast/crew) within a single document, ensuring that all information related to a TV show can be retrieved in one query. This eliminates the need for complex joins and significantly reduces response times.
+                By using MongoDB, the data model is optimized for performance and scalability, and it will be able to handle large volumes of TV show data efficiently.
+
+            }
