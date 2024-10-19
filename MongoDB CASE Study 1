@@ -13,6 +13,17 @@ Problem :
               • Data obtained from various data sources is in structured, semi-structured, or unstructured format.
               • Currently, data is first converted into SQL queries before being stored in the SQL database.
               • Heavy queries immensely affect the database performance.
+
+             Additional Information:
+             Business needs to prototype a new critical business application in two weeks, and 
+             it should be deployedto production in 100 days.
+
+             Approach to Solve : 
+             • List the business requirements
+             • Compare different database categories
+             • Select a database from the category which caters to the business needs
+             • Install the database 
+             • Explore the database
           }
 
 
