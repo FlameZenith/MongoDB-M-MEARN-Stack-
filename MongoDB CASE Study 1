@@ -1,0 +1,98 @@
+CASE Study 1 : 
+
+Problem :
+          {
+              Business Requirement :
+              Your organization is looking for a database solution which helps to enable business
+              innovation, reduces costs, accelerates time to market, transforms customer
+              experience, and enhances efficiency. As the database administrator, you have 
+              been asked to think, try, and suggest a solution which can help meet the specified
+              requirements.
+              
+              Key Issues :
+              • Data obtained from various data sources is in structured, semi-structured, or unstructured format.
+              • Currently, data is first converted into SQL queries before being stored in the SQL database.
+              • Heavy queries immensely affect the database performance.
+          }
+
+
+Solution : 
+            {
+                Step 1: List the Business Requirements
+                The following are the key business requirements based on the information provided:
+                1.	Flexibility to Handle Multiple Data Formats: Must be able to handle structured, semi-structured, and unstructured data.
+                2.	High Performance: The database should be able to handle complex queries without affecting performance, especially during peak usage.
+                3.	Scalability: The solution should be capable of scaling as data grows, ensuring that the application continues to perform optimally even under heavy loads.
+                4.	Rapid Prototyping and Deployment: The database should allow for quick setup and prototyping, supporting a timeline of two weeks for prototyping and 100 days for full deployment.
+                5.	Cost Efficiency: The solution should minimize operational and maintenance costs.
+
+
+                Step 2: Compare Different Database Categories
+                Given the business requirements, we will evaluate several database categories:
+                1.	Relational Databases (SQL):
+                o	Examples: MySQL, PostgreSQL, Microsoft SQL Server
+                o	Pros:
+                	Mature technology, strong consistency (ACID properties).
+                	Suitable for structured data with predefined schemas.
+                o	Cons:
+                	Poor performance when handling large, complex queries or semi-structured/unstructured data.
+                	Difficult to scale horizontally, especially in cloud environments.
+                	High overhead due to SQL query translation and complexity in handling large-scale, dynamic datasets.
+                	Limited support for complex queries (e.g., joins and aggregations).
+                
+                3.	NewSQL Databases:
+                o	Examples: CockroachDB, NuoDB, Google Spanner
+                o	Pros:
+                	Combines the best of SQL and NoSQL, offering scalability with strong consistency (ACID).
+                	Suited for high-availability, cloud-native applications.
+                	Good support for both transactional and analytical workloads.
+                o	Cons:
+                	Newer technology, fewer experts and resources compared to mature SQL or NoSQL databases.
+                	May have higher operational complexity.
+                
+                4.	Columnar Databases:
+                o	Examples: Amazon Redshift, Google BigQuery, Apache HBase
+                o	Pros:
+                	Excellent for handling analytical workloads and large datasets.
+                	High query performance on large volumes of data, especially for read-heavy operations.
+                o	Cons:
+                	Not suitable for transactional systems with frequent writes.
+                	Optimized for analytical use, not for general-purpose databases.
+                
+                5.	Graph Databases:
+                o	Examples: Neo4j, Amazon Neptune
+                o	Pros:
+                	Best for managing highly connected data (e.g., social networks, recommendation engines).
+                	Flexible data models that excel at representing relationships.
+                o	Cons:
+                	Not suitable for general-purpose database use cases.
+                
+                Step 3: Select a Database
+                Based on the business requirements and the issues at hand, the most suitable database categories are NoSQL and NewSQL. After evaluating the pros and cons, MongoDB (a NoSQL database) and CockroachDB (a NewSQL database) stand out as strong candidates.
+                
+                •	MongoDB:
+                o	It offers high scalability, flexibility with semi-structured and unstructured data (e.g., JSON, XML), and rapid development. It is ideal if you need flexibility in data formats and quick prototyping.
+                o While MongoDB is excellent for scalable, flexible applications, it may not have the same level of strong transactional consistency as relational databases.
+                
+                Step 4: Install the Database
+                Once the database has been selected, the next step is to install and configure it.
+                1.	MongoDB Installation:
+                o	Deployment: MongoDB can be set up on cloud platforms such as MongoDB Atlas (a managed service) or on-premise. The installation process is straightforward, and there are pre-built Docker images available for cloud deployment.
+                o	Configuration: You will need to configure the data replication, sharding, and indexing for high availability and scalability. MongoDB Atlas offers automated scaling and backup features.
+
+                Step 5: Explore the Database
+                After installation, it is essential to explore the database features:
+                1.	Data Modeling:
+                o	For MongoDB, explore its flexibility with collections and documents (for semi-structured and unstructured data).
+                2.	Query Performance:
+                o	Test the performance of queries, especially heavy aggregation queries.
+                o	Compare the speed and responsiveness of each database with large datasets.
+                3.	Prototyping:
+                o	Build a prototype application with sample data to ensure the database handles the expected workload and meets business requirements. Test the scalability and performance under load.
+                ________________________________________
+                Conclusion
+                Based on the business requirements and the analysis of the database categories, MongoDB is strong candidates for addressing the organization's needs:
+                •	MongoDB is best suited for flexible data formats, scalability, and fast prototyping.
+                Both options provide solutions to improve performance, reduce costs, and accelerate the time to market, enabling the business to innovate and meet its application deployment timeline.
+
+            }
